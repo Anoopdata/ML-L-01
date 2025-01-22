@@ -1,1 +1,349 @@
+KNN
+K-NN algorithm, yaani K-Nearest Neighbors, ek supervised learning algorithm hai jo classification aur regression dono ke liye use hota hai. Chalo isko simple language mein samajhte hain:
 
+Kya hai K-NN algorithm?
+K-NN ka matlab hota hai "K sabse kareeb waale neighbors" ka analysis.
+Jab humein ek naya data point milta hai, toh hum uske kareeb ke data points (neighbors) ko dekhte hain aur decide karte hain ki yeh kis category mein aayega ya iska output kya hoga.
+
+Kaam kaise karta hai K-NN?
+Data Store Karna: Yeh algorithm saara training data memory mein store karta hai.
+Distance Calculate Karna: Naye data point aur saare training data points ke beech distance calculate kiya jata hai (jaise Euclidean distance, Manhattan distance).
+Neighbors Ko Select Karna: "K" ka value define karte hain (jaise K=3 ya K=5). Yeh value decide karti hai ki kitne closest neighbors dekhenge.
+Majority Vote (Classification): Agar zyada data points ek hi category mein hain, toh naya point bhi usi category ka hoga.
+Example: Agar K=3 hai aur 2 neighbors "Apple" hain aur ek "Orange," toh output "Apple" hoga.
+Average (Regression): Neighbors ke output ka average calculate karke result diya jata hai.
+
+Example:
+Maan lijiye aapke paas ek dataset hai:
+Weight (kg)
+Height (cm)
+Category
+60
+170
+Healthy
+70
+160
+Overweight
+50
+180
+Healthy
+
+Naye point ke liye: Weight = 65, Height = 165.
+Sabse pehle distance calculate hoga (jaise Euclidean distance).
+Phir kareeb ke "K" points dekhenge. Agar K=3, toh sabse paas ke 3 points consider honge.
+Majority category decide karega ki naya point kaunsa hai (yahan Overweight ya Healthy).
+
+Advantages:
+Simple aur easy-to-implement.
+Non-parametric hai, yani isko kisi fixed assumption ki zarurat nahi hoti.
+Disadvantages:
+Large dataset ke saath slow ho jata hai, kyunki har baar distance calculate karna padta hai.
+Outliers kaafi effect daal sakte hain.
+Aapka confusion clear hua? 😊
+
+
+KNN Algorithm 
+K-Nearest Neighbors (K-NN) ek basic aur important classification algorithm hai jo Machine Learning ke supervised learning domain ka hissa hai. Chaliye ise step-by-step samajhte hain:
+
+K-NN kya hota hai?
+K-NN algorithm ek aisa technique hai jo training data ko use karke naye data points ko classify karta hai.
+Iska main idea yeh hai ki "jo cheez ek data point ke sabse kareeb hoti hai, uska behavior uske neighbors jaise hi hota hai."
+
+K-NN ki khasiyat aur kaam kaise karta hai?
+Supervised Learning:
+
+
+Iska matlab hai ki humein pehle se training data ke input aur output labels diye gaye hote hain.
+Training data ke basis par naye data points ka output predict karte hain.
+Applications kaha hoti hain?
+
+
+Pattern Recognition: Kisi object ya handwriting ko identify karna.
+Data Mining: Large datasets se patterns aur relationships dhoondhna.
+Intrusion Detection: System ya network pe unusual activities detect karna (like cyber threats).
+
+Kaise Kaam Karta Hai K-NN?
+Data Store:
+
+
+Training phase mein algorithm sirf data ko store karta hai; koi complex calculation us samay nahi hoti.
+Distance Calculation:
+
+
+Jab naya data point aata hai, toh hum naye point ka distance calculate karte hain saare existing points ke saath.
+Distance measure karne ke liye alag-alag techniques hoti hain jaise:
+Euclidean Distance: Straight line distance between two points.
+Manhattan Distance: Horizontal aur vertical steps count karte hain.
+K Neighbors Select Karna:
+
+
+"K" ka matlab hota hai number of nearest neighbors jo hum consider karenge.
+Jaise agar K=3, toh hum sabse kareeb ke 3 data points dekhenge.
+Majority Vote (Classification):
+
+
+Classification Problem:
+ Agar "K" ke andar zyada neighbors ek hi category ke hain, toh naye data point ko usi category mein daala jata hai.
+Example: Agar 2 neighbors "Dog" hain aur 1 "Cat," toh output "Dog" hoga.
+Averaging (Regression):
+
+
+Regression Problem:
+ Agar prediction numerical value ka ho, toh "K" ke andar neighbors ka average lete hain.
+
+Ek Simple Example:
+Sochiye aap ek fruit ko classify karna chahte hain:
+Training data:
+Apple: Red color, Smooth texture
+Orange: Orange color, Rough texture
+Naya data point: Red color, Smooth texture.
+K-NN sabse pehle "Red aur Smooth" wale nearest neighbors ko dekhega. Agar majority "Apple" ke hain, toh naya fruit Apple hoga.
+
+K-NN ke Advantages aur Limitations
+Advantages:
+Simple aur Easy-to-Understand:
+ Na toh kisi complex calculation ki zarurat hai, na extra parameters ki.
+Non-Parametric:
+ Iska matlab yeh hai ki yeh kisi fixed data assumption pe dependent nahi hai.
+Limitations:
+Computationally Expensive:
+ Jab data bohot zyada hota hai, toh har naye point ke liye distance calculate karna slow ho jata hai.
+Outliers ke liye Sensitive:
+ Agar data mein outliers hain, toh prediction galat ho sakti hai.
+
+K-NN simple hone ke bawajood Machine Learning ke foundation ka ek essential hissa hai. Agar aapko samajhne mein koi dikkat ho, toh aur detail mein discuss karte hain! 😊
+      
+
+
+
+
+
+
+
+
+
+
+Types of Distances
+Machine Learning mein distance measures kaafi important hote hain, specially jab algorithms jaise K-Nearest Neighbors (K-NN) use karte hain. Distance measures ka kaam hota hai doh points ke beech similarity ya dissimilarity ko measure karna.
+Aayiye Types of Distances ko step-by-step samajhte hain:
+
+1. Euclidean Distance (Straight-line Distance)
+Ye sabse common aur simple distance measure hai.
+Iska matlab hota hai doh points ke beech ka shortest straight-line distance.
+Formula:
+d=(x2−x1)2+(y2−y1)2d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+Example:
+ Agar Point A (2, 3) aur Point B (5, 7) hain, toh Euclidean distance hoga:
+d=(5−2)2+(7−3)2=9+16=5d = \sqrt{(5-2)^2 + (7-3)^2} = \sqrt{9 + 16} = 5
+Use Case:
+Continuous Data jahan coordinates ya numerical values ho.
+
+2. Manhattan Distance (Taxi-cab Distance)
+Isko city-block distance bhi bolte hain, kyunki yeh ek grid ki tarah ka distance calculate karta hai (jaise kisi city mein roads ke blocks).
+Iska formula doh points ke beech ka horizontal aur vertical differences ka sum hai.
+Formula:
+d=∣x2−x1∣+∣y2−y1∣d = |x_2 - x_1| + |y_2 - y_1|
+Example:
+ Agar Point A (2, 3) aur Point B (5, 7) hain, toh Manhattan distance hoga:
+d=∣5−2∣+∣7−3∣=3+4=7d = |5 - 2| + |7 - 3| = 3 + 4 = 7
+Use Case:
+Jahan movement sirf horizontal ya vertical ho (jaise delivery routes).
+
+3. Minkowski Distance
+Yeh ek generalized distance formula hai jo Euclidean aur Manhattan distance ka extension hai.
+Minkowski distance ka order parameter (p) hota hai:
+Agar p=2p = 2, toh Minkowski distance Euclidean Distance ban jata hai.
+Agar p=1p = 1, toh Minkowski distance Manhattan Distance ban jata hai.
+Formula:
+d=(∑i=1n∣xi−yi∣p)1pd = \left( \sum_{i=1}^n |x_i - y_i|^p \right)^{\frac{1}{p}}
+Use Case:
+Different types of data ke liye flexibly use kiya jata hai.
+
+4. Hamming Distance
+Hamming Distance sirf categorical ya binary data ke liye use hoti hai.
+Yeh batata hai ki doh strings ya binary vectors mein kitne positions par difference hai.
+Formula:
+d=Number of differing positionsd = \text{Number of differing positions}
+Example:
+ String A = "10101"
+ String B = "10011"
+ Hamming Distance = 2 (kyunki 2 positions alag hain).
+Use Case:
+Text analysis, error detection and correction, ya categorical features ke liye.
+
+5. Cosine Distance (Cosine Similarity)
+Yeh distance measure doh vectors ke beech angle ko calculate karta hai, na ki unke magnitudes ko.
+Cosine Similarity ka value 1 ke kareeb hota hai agar vectors similar hain, aur 0 ke kareeb hota hai agar alag hain.
+Formula (Cosine Similarity):
+Similarity=Dot Product of VectorsMagnitude of Vectors\text{Similarity} = \frac{\text{Dot Product of Vectors}}{\text{Magnitude of Vectors}}
+Cosine Distance:
+Distance=1−Cosine Similarity\text{Distance} = 1 - \text{Cosine Similarity}
+Example:
+Agar doh documents ke word frequency vectors compare karne ho.
+Use Case:
+Text analysis, NLP, and recommendation systems.
+
+6. Mahalanobis Distance
+Yeh ek advanced distance measure hai jo data ke distribution ko dhyan mein rakhta hai.
+Isme doh points ka distance calculate karne ke liye covariance matrix ka use hota hai.
+Formula:
+d=(x−μ)TS−1(x−μ)d = \sqrt{(x - \mu)^T S^{-1} (x - \mu)}
+xx: Data point
+μ\mu: Mean vector
+SS: Covariance matrix
+Use Case:
+Outlier detection aur multi-dimensional data ke liye.
+
+Summary Table:
+Type
+Best For
+Example Use
+Euclidean
+Continuous data
+K-NN, clustering
+Manhattan
+Grid-like data
+Delivery routes
+Minkowski
+Generalized distance
+Hybrid use cases
+Hamming
+Categorical/Binary data
+Error detection in strings
+Cosine
+Directional similarity
+Text/NLP, document similarity
+Mahalanobis
+Multi-dimensional correlated data
+Outlier detection
+
+
+Aapko samajhne mein aur clarity chahiye toh poochh sakte hain! 😊
+
+
+
+
+
+
+
+
+
+
+Code start from here
+
+Chaliye, aapke provided K-Nearest Neighbors (KNN) ka code aur uska working as a teacher style mein samajhte hain. Yeh project ek employee ki salary estimation karta hai (above or below 50k) using KNN model.
+
+Step 1: Libraries Import Karna
+Pehle hum pandas, numpy, aur other libraries ko import karte hain jo data manipulation aur model training ke liye zarurat hoti hain.
+import pandas as pd
+import numpy as np
+
+
+Step 2: Dataset Load Karna
+Dataset ko load karne ke liye read_csv() function ka use kiya.
+salary.csv file ko load karke pehle iska size aur top 10 rows print kiya jata hai.
+dataset = pd.read_csv('salary.csv')
+print(dataset.shape)  # rows aur columns ka size
+print(dataset.head(10))  # pehle 10 rows dikhana
+
+
+Step 3: Salary Mapping (Binary Conversion)
+income column ko map kiya:
+Agar salary <=50K hai toh usko 0 assign kiya.
+Agar salary >50K hai toh usko 1 assign kiya.
+Isse hum dependent variable ko model-friendly format mein convert karte hain.
+dataset['income'] = dataset['income'].map({'<=50K': 0, '>50K': 1}).astype(int)
+
+
+Step 4: Dataset ko Input (X) aur Output (Y) mein Split Karna
+X (Input Features): Sirf age aur working hours liye ([0,3] columns).
+Y (Target Output): income column ko output variable banaya.
+x = dataset.iloc[:, [0, 3]].values
+y = dataset.iloc[:, -1].values
+
+
+Step 5: Train-Test Split
+Data ko training aur testing sets mein split kiya:
+80% training ke liye aur 20% testing ke liye.
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+
+
+Step 6: Feature Scaling
+Different features ko same scale pe lana zaroori hai, taaki unka equal impact ho.
+StandardScaler ka use kiya to normalize data:
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+x_train = sc.fit_transform(x_train)
+x_test = sc.transform(x_test)
+
+
+Step 7: Best K-value Find Karna
+K (neighbors ka count) ka best value find karte hain by calculating error rates for different K values.
+Loop chalaya K=1 to K=40 ke liye, aur error rate calculate kiya:
+error = []
+for i in range(1, 40):
+    model = KNeighborsClassifier(n_neighbors=i)
+    model.fit(x_train, y_train)
+    pred_i = model.predict(x_test)
+    error.append(np.mean(pred_i != y_test))
+
+Graph Plot: Error rate ke liye graph draw kiya:
+plt.figure(figsize=(12, 6))
+plt.plot(range(1, 40), error, color='red', linestyle='dashed', marker='o')
+plt.title('Error Rate for K Value')
+plt.xlabel('K Value')
+plt.ylabel('Mean Error')
+plt.show()
+
+
+Step 8: Model Training
+KNN classifier ka K=38 use kiya (jisme lowest error mila).
+Metric as Minkowski Distance aur p=2 use kiya (Euclidean distance ke liye).
+from sklearn.neighbors import KNeighborsClassifier
+model = KNeighborsClassifier(n_neighbors=38, metric='minkowski', p=2)
+model.fit(x_train, y_train)
+
+
+Step 9: New Employee Prediction
+User se age aur working hours ka input liya.
+Model ne us employee ki salary predict ki (above 50k ya below 50k).
+Prediction ko transform karke result dikhaya.
+age = int(input("enter new employee age : "))
+wh = int(input("enter working hours : "))
+new_emp = [[age, wh]]
+result = model.predict(sc.transform(new_emp))
+
+if result == 1:
+    print("Employee might get salary above 50k")
+else:
+    print("Employee might not get salary above 50k")
+
+
+Step 10: Prediction for All Test Data
+Testing data ke liye salary predictions nikalna.
+y_pred = model.predict(x_test)
+
+
+Step 11: Model Evaluation
+Confusion Matrix:
+ Testing results ka evaluation matrix print kiya.
+Accuracy Score:
+ Model ka performance (accuracy) calculate kiya.
+from sklearn.metrics import confusion_matrix, accuracy_score
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+
+acc_score = accuracy_score(y_test, y_pred) * 100
+print(acc_score)
+
+
+Samajhne Layak Points
+Mapping Salary: Continuous/categorical data ko binary form mein convert kiya.
+Scaling Data: Features ko normalize karna zaroori hai for better KNN performance.
+Choosing K: Best K value select karna error minimization ke liye zaroori hai.
+Evaluation: Confusion matrix aur accuracy score batata hai ki model kitna effective hai.
+Agar koi confusion ho ya aur detail chahiye toh zaroor batayein! 😊
+
+
+Lecture no 03 Lo
