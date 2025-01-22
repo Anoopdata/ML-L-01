@@ -1,0 +1,3 @@
+perform support vector regression method in data.csv file and find r2score and mean square error.
+
+perform SVM algorithm methods with previous datasets and check which algorithm is performing well.
