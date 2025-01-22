@@ -1,0 +1,221 @@
+logistic regression
+Chalo step-by-step is code ko samajhte hain aur Machine Learning ka concept clear karte hain.
+
+Objective:
+Is program ka goal hai predict karna ki ek customer product kharidega ya nahi. Yeh ek binary classification problem hai, jisme output sirf do categories mein hota hai:
+1: Customer kharidega.
+0: Customer nahi kharidega.
+
+Code Explanation
+1. Importing Libraries
+import pandas as pd
+import numpy as np
+
+Pandas: Data manipulation aur analysis ke liye.
+Numpy: Numerical computations ke liye.
+
+2. Load Dataset
+dataset = pd.read_csv('DigitalAd_dataset.csv')
+df = dataset.copy()
+
+Dataset ko pandas DataFrame ke format mein load kiya.
+df ek copy hai jo original dataset ko safe rakhta hai.
+
+3. Summarize Dataset
+print(df.shape)
+print(df.head())
+
+df.shape: Dataset mein kitni rows aur columns hain yeh batata hai.
+df.head(): Top 5 rows ko display karta hai. Yeh dataset ka structure samajhne ke liye helpful hota hai.
+
+4. Split Dataset into X and Y
+X = df.iloc[:, :-1]
+Y = df.iloc[:, -1]
+
+X: Input features (Age aur Salary) ko store karta hai.
+Y: Output variable (Customer buy karega ya nahi) ko store karta hai.
+
+5. Split into Train and Test Sets
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.15, random_state=1)
+
+Training Set (85% data): Model ko train karne ke liye.
+Test Set (15% data): Model ki performance evaluate karne ke liye.
+random_state=1: Yeh ensure karta hai ki split har baar same ho.
+
+6. Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+
+x_train = sc.fit_transform(x_train)
+x_test = sc.transform(x_test)
+
+Feature Scaling: Variables (Age, Salary) ke alag-alag scales ko normalize karta hai.
+Purpose:
+Faster model training.
+Avoiding bias due to large-scale differences.
+StandardScaler mean = 0 aur standard deviation = 1 pe normalize karta hai.
+
+7. Train the Model
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(x_train, y_train)
+
+Logistic Regression ek supervised learning algorithm hai jo binary classification problems ke liye use hota hai.
+model.fit: Training data ko use karke model parameters (coefficients) seekh raha hai.
+
+8. Predict for a New Customer
+age = int(input("enter age : "))
+sal = int(input("enter your salary : "))
+newcust = [[age, sal]]
+result = model.predict(sc.transform(newcust))
+print(result)
+
+if result == 1:
+    print("Customer will Buy")
+else:
+    print("Customer won't buy")
+
+User se Age aur Salary input li ja rahi hai.
+model.predict: Transform karke input ko model pe pass kiya ja raha hai.
+Output:
+1: Customer kharidega.
+0: Customer nahi kharidega.
+
+9. Prediction for Test Data
+y_pred = model.predict(x_test)
+
+Test data ka prediction: Sabhi test samples ke liye model apna prediction deta hai.
+y_pred: Predicted outputs ko store karta hai.
+
+10. Evaluate the Model
+from sklearn.metrics import confusion_matrix, accuracy_score
+
+cm = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix : \n", cm)
+
+Confusion Matrix: Actual vs Predicted results ko compare karta hai. Iska format:
+     Predicted: No   Predicted: Yes
+  Actual: No       TN            FP
+  Actual: Yes      FN            TP
+
+
+TN (True Negative): Actual = No, Predicted = No
+TP (True Positive): Actual = Yes, Predicted = Yes
+FP (False Positive): Actual = No, Predicted = Yes
+FN (False Negative): Actual = Yes, Predicted = No
+acu_score = accuracy_score(y_test, y_pred)*100
+print(f"Accuracy score : {acu_score:.2f}%")
+
+Accuracy Score: Kitne predictions sahi the. Formula: Accuracy=TP + TNTotal Samples\text{Accuracy} = \frac{\text{TP + TN}}{\text{Total Samples}}
+
+Key Results:
+Confusion Matrix aur Accuracy Score se pata chalta hai ki model ka performance kaisa hai.
+Example output:
+ Confusion Matrix:
+[[47  4]
+ [10 19]]
+Accuracy score: 88.00%
+
+
+
+Conclusion:
+Logistic Regression model kaafi acha perform kar raha hai.
+Feature scaling aur data splitting kaafi important hai model ke accuracy ke liye.
+Yeh program real-world applications jaise marketing campaigns aur customer analysis mein use kiya ja sakta hai.
+Aapko aur koi part samajhna ho toh poochhiye! 😊
+
+
+
+
+Simple Linear regression 
+
+
+
+Predict the Marks Obtained by a Student Based on Hours of Study
+Hum yahan ek Linear Regression Model ka use kar rahe hain jo hours studied (independent variable) ke basis par student's marks (dependent variable) predict karega.
+
+Step-by-Step Explanation:
+1. Importing Libraries
+import pandas as pd
+import numpy as np
+
+pandas: Data handling aur analysis ke liye use hota hai.
+numpy: Numerical operations ke liye use hota hai.
+
+2. Load Dataset
+dataset = pd.read_csv('01Students.csv')
+df = dataset.copy()
+
+Dataset ko .csv file se load kiya gaya hai.
+df variable mein data copy kiya gaya hai taaki original dataset safe rahe.
+
+3. Summarize Dataset
+print(df.shape)
+print(df.head())
+
+shape: Dataset ke rows aur columns ka size batata hai.
+head(): Top 5 rows ko print karta hai taaki hum data ka preview le saken.
+
+4. Segregating Input (X) and Output (Y)
+X = df.iloc[:, :-1]
+Y = df.iloc[:, -1]
+
+X (Input): Dataset ke saare columns except last column ko select kiya gaya hai.
+Y (Output): Last column ko target variable ke liye liya gaya hai.
+
+5. Splitting Dataset into Train & Test
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=12)
+
+Data ko training aur testing sets mein divide kiya gaya hai.
+test_size=0.3 ka matlab hai 30% data testing ke liye use hoga aur 70% training ke liye.
+random_state same split ko reproducible banata hai.
+
+6. Feature Scaling
+Is step ko skip kiya gaya hai, lekin agar variables ke range zyada different hote, toh scaling required hoti.
+
+7. Training the Model
+from sklearn.linear_model import LinearRegression
+std_reg = LinearRegression()
+std_reg.fit(x_train, y_train)
+
+LinearRegression(): Ek simple regression algorithm jo straight line fit karta hai.
+fit(): Model ko training data ke saath train karta hai.
+
+8. Predicting on Test Data
+y_predict = std_reg.predict(x_test)
+
+predict(): Testing data ka output predict karta hai.
+
+9. Evaluating the Model
+from sklearn.metrics import mean_squared_error, r2_score
+rscore = r2_score(y_test, y_predict)
+print(rscore)
+
+r2_score: Model ki accuracy ya goodness of fit batata hai.
+Higher r2_score ka matlab model zyada accurate hai.
+rmsr = (mean_squared_error(y_test, y_predict))**0.5
+print(rmsr)
+
+Root Mean Squared Error (RMSE): Prediction aur actual values ke beech ka average error.
+
+10. Plotting the Results
+import matplotlib.pyplot as plt
+
+plt.scatter(x_test, y_test)   # Scatter plot of actual values
+plt.plot(x_test, y_predict, 'ro:')  # Line plot of predicted values
+plt.show()
+
+Scatter Plot: Shows the actual test data values.
+Line Plot: Shows the predicted values as a red dashed line.
+
+Model Summary:
+Humne ek Linear Regression Model banaya jo hours studied ke basis par marks predict karta hai.
+Testing data ke basis par humne model ki accuracy calculate ki using R2 score aur RMSE.
+Results ko scatter plot aur predicted line ke through visualize kiya.
+Aapko koi doubt ho ya explanation aur detail mein chahiye toh poochhiye! 😊
+
+
+
+
