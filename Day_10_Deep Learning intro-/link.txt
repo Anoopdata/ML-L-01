@@ -1,0 +1,4 @@
+Dataset and python code to detect mask and no mask images - https://www.kaggle.com/andrewmvd/face-mask-detection
+
+
+Teachable Machine - https://teachablemachine.withgoogle.com/
